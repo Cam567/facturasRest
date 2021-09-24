@@ -10,23 +10,14 @@ pipeline {
 
         stage("Creación de imagen"){
             steps{
-                if(isUnix()){
-                    sh( script: "docker build -t camila-formacion/app-rest")
-                }
-                else{
-                    bat "docker build -t camila-formacion/app-rest"
-                }
+                bat "docker build -t camila-formacion/app-rest"
             }
         }
 
        stage("Ejecución de contenedor"){
            steps {
-               if(isUnix()){
-                    sh "docker run -d --name app-rest -p 8081:8080 camila-formacion/app-rest"
-                }
-                else{
                     bat "docker run -d --name app-rest -p 8081:8080 camila-formacion/app-rest"
-                }
+                
            }
            
         }
@@ -39,9 +30,9 @@ pipeline {
 
         stage("Cerrar recursos"){
            steps {
-                sh "docker stop app-rest"
-                sh "docker container rm app-rest" 
-                sh "docker image rm camila-formacion/app-rest"
+                bat "docker stop app-rest"
+                bat "docker container rm app-rest" 
+                bat "docker image rm camila-formacion/app-rest"
             }            
         }
     }
