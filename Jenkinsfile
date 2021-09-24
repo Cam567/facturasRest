@@ -10,7 +10,7 @@ pipeline {
 
         stage("Creación de imagen"){
             steps{
-                bat "docker build -t camila-formacion/app-rest"
+                bat "docker build -t camila-formacion/app-rest ."
             }
         }
 
